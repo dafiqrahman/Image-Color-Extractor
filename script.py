@@ -24,10 +24,16 @@ def rgb2hex(r, g, b):
     return "#{:02x}{:02x}{:02x}".format(r, g, b)
 
 
+def sort_colors(colors):
+    colors = colors[np.argsort(colors.sum(axis=1))]
+    return colors
+
+
 def plot_colors(model):
     centers = model.cluster_centers_
     n_clusters = len(centers)
     centers = np.array(centers, dtype='uint8')
+    centers = sort_colors(centers)
     normalized_centers = centers / 255.
     color_data = [[[i]] for i in normalized_centers]
     nrow = n_clusters//2
