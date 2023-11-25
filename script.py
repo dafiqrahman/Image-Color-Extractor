@@ -32,6 +32,7 @@ def plot_colors(model):
     color_data = [[[i]] for i in normalized_centers]
     nrow = n_clusters//2
     ncol = n_clusters//nrow + n_clusters % nrow
+    hex_colors = [rgb2hex(*i) for i in centers]
     fig, axs = plt.subplots(nrow, ncol)
     # auto adjust the layout
     plt.tight_layout()
@@ -53,7 +54,7 @@ def plot_colors(model):
     plt.axis('off')
     plt.tight_layout()
     # transparent background
-    return (fig, axs)
+    return (fig, axs, hex_colors)
 
 
 def main(image, n_colors):

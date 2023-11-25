@@ -24,5 +24,9 @@ if image_file is not None:
     image = Image.open(image_file)
     image = image.convert('RGB')
     with col2:
-        fig, axs = main(image, n_colors)
+        fig, axs, hex_colors = main(image, n_colors)
         st.pyplot(fig)
+    columns = st.columns(n_colors)
+    for i, col in enumerate(columns):
+        with col:
+            st.color_picker(f"Color {i+1}", hex_colors[i])
